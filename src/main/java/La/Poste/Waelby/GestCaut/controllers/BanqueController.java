@@ -102,8 +102,30 @@ public class BanqueController {
         }
     }
 
-   /* @GetMapping("/banques/mail")
-    public ResponseEntity<List<Banque>> findByEmail() {
+    @GetMapping("/banquesmail/{mail}")
+    public ResponseEntity<List<Banque>> findByEmail(@PathVariable("mail") String mail) {
+        try {
+            List<Banque> banques = banqueRepository.findByMail(mail);
 
-    }*/
+            if (banques.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(banques, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/banquesnom/{nom}")
+    public ResponseEntity<List<Banque>> findByNomBanque(@PathVariable("nom") String nom) {
+        try {
+            List<Banque> banques = banqueRepository.findByNomContaining(nom);
+
+            if (banques.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(banques, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

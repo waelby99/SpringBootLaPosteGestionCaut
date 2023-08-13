@@ -37,11 +37,16 @@ public class Caution {
     @Size(max=150)
     private String remarque;
 
+    private Etat etat;
+    @DBRef
+    private Set<Ordonnateur> ordonnateurs = new HashSet<>();
+
     @DBRef
     private Set<Banque> banques = new HashSet<>();
 
     @DBRef
     private Set<Fournisseur> fournisseurs = new HashSet<>();
+
 
     public Set<Banque> getBanques() {
         return banques;
@@ -67,8 +72,6 @@ public class Caution {
         this.ordonnateurs = ordonnateurs;
     }
 
-    @DBRef
-    private Set<Ordonnateur> ordonnateurs = new HashSet<>();
 
     public enum Etat {
         encours,
@@ -77,7 +80,7 @@ public class Caution {
         saisie
     }
 
-    private Etat etat;
+
 
     public Caution() {
     }
