@@ -78,14 +78,15 @@ public class BanqueController {
 
     @PutMapping("/banques/{id}")
     public ResponseEntity<Banque> updateBanque(@PathVariable("id") String id, @RequestBody Banque banque) {
-        Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+        Optional<Banque> banqueData = banqueRepository.findById(id);
 
-        if (tutorialData.isPresent()) {
-            Tutorial _tutorial = tutorialData.get();
-            _tutorial.setTitle(tutorial.getTitle());
-            _tutorial.setDescription(tutorial.getDescription());
-            _tutorial.setPublished(tutorial.isPublished());
-            return new ResponseEntity<>(tutorialRepository.save(_tutorial), HttpStatus.OK);
+        if (banqueData.isPresent()) {
+            Banque _banque = banqueData.get();
+            _banque.setNom(banque.getNom());
+            _banque.setMail(banque.getMail());
+            _banque.setAdresse(banque.getAdresse());
+            _banque.setTel(banque.getTel());
+            return new ResponseEntity<>(banqueRepository.save(_banque), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -93,15 +94,15 @@ public class BanqueController {
 
     @DeleteMapping("/banques/{id}")
     public ResponseEntity<HttpStatus> deleteBanque(@PathVariable("id") String id) {
-
+        try {
+            banqueRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @DeleteMapping("/banques")
-    public ResponseEntity<HttpStatus> deleteAllBanques() {
-
-    }
-
-    @GetMapping("/banques/mail")
+   /* @GetMapping("/banques/mail")
     public ResponseEntity<List<Banque>> findByEmail() {
 
     }*/
