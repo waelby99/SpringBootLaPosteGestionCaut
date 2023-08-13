@@ -1,13 +1,10 @@
 package La.Poste.Waelby.GestCaut.models;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,24 +14,20 @@ public class Caution {
     @Id
     private String id;
 
-    @NotNull
+
     private int code;
 
     private Date datecaut;
 
-    @NotBlank
-    @Size(max=150)
     private String reference;
 
-    @NotNull
     private float montant;
 
     private Date dateleve;
 
     private Date daterest;
 
-    @NotBlank
-    @Size(max=150)
+
     private String remarque;
 
     private Etat etat;

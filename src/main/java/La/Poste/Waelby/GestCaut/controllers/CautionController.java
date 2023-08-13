@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import La.Poste.Waelby.GestCaut.models.Caution;
+import La.Poste.Waelby.GestCaut.models.Fournisseur;
 import La.Poste.Waelby.GestCaut.repository.CautionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -98,4 +99,46 @@ public class CautionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/cautionscode/{code}")
+    public ResponseEntity<List<Caution>> findByCode(@PathVariable("code") int code) {
+        try {
+            List<Caution> cautions = cautionRepository.findByCode(code);
+
+            if (cautions.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cautions, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/cautionsetat/{etat}")
+    public ResponseEntity<List<Caution>> findByEtat(@PathVariable("etat") String etat) {
+        try {
+            List<Caution> cautions = cautionRepository.findByEtat(etat);
+
+            if (cautions.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cautions, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/cautionsref/{reference}")
+    public ResponseEntity<List<Caution>> findByReference(@PathVariable("reference") String reference) {
+        try {
+            List<Caution> cautions = cautionRepository.findByReference(reference);
+
+            if (cautions.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cautions, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

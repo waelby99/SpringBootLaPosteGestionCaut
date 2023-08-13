@@ -1,9 +1,6 @@
 package La.Poste.Waelby.GestCaut.models;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,17 +8,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ordonnateur {
     @Id
     private String id;
-    @NotBlank
-    @Size(max=20)
+
     private String nom;
-    @NotBlank
-    @Size(max=50)
-    @Email
+
     private String mail;
-    @NotBlank
-    @Size(max=150)
+
     private String adresse;
-    @NotNull
+
     private int tel;
 
     public Ordonnateur() {

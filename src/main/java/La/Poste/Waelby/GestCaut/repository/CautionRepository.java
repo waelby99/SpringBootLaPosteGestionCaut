@@ -9,5 +9,6 @@ import java.util.List;
 public interface CautionRepository extends MongoRepository<Caution,String> {
     List<Caution> findByCode(int code);
     List<Caution> findByReference(String reference);
+    List<Caution> findByEtat(String etat);
 
 }
