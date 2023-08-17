@@ -19,14 +19,14 @@ public class UserInfoResponse {
         this.roles = roles;
     }
 
-    public UserInfoResponse(String id, String username, String email, List<String> roles, String nom, String prenom, String position) {
+    public UserInfoResponse(String id, String username, String nom,String position,String prenom,String email,List<String> roles) {
         this.id = id;
         this.username = username;
+        this.nom = nom;
+        this.position = position;
+        this.prenom = prenom;
         this.email = email;
         this.roles = roles;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.position = position;
     }
 
     public String getId() {
