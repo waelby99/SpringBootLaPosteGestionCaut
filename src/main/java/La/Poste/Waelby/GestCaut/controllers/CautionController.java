@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api")
 public class CautionController {
@@ -79,7 +79,9 @@ public class CautionController {
             _caution.setMontant(caution.getMontant());
             _caution.setDateleve(caution.getDateleve());
             _caution.setDaterest(caution.getDaterest());
+            _caution.setDatesaisie(caution.getDatesaisie());
             _caution.setRemarque(caution.getRemarque());
+            _caution.setEtat(caution.getEtat());
             _caution.setOrdonnateurs(caution.getOrdonnateurs());
             _caution.setBanques(caution.getBanques());
             _caution.setFournisseurs(caution.getFournisseurs());
