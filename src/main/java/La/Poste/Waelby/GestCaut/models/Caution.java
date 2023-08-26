@@ -4,9 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Document(collection="cautions")
 public class Caution {
@@ -42,38 +40,24 @@ public class Caution {
 
     private Etat etat;
     @DBRef
-    private Set<Ordonnateur> ordonnateurs = new HashSet<>();
+    private Ordonnateur ordonnateurs;
 
     @DBRef
-    private Set<Banque> banques = new HashSet<>();
+    private Banque banques;
 
     @DBRef
-    private Set<Fournisseur> fournisseurs = new HashSet<>();
+    private Fournisseur fournisseurs;
 
 
-    public Set<Banque> getBanques() {
+
+    public Banque getBanques() {
         return banques;
     }
 
-    public void setBanques(Set<Banque> banques) {
+    public void setBanques(Banque banques) {
         this.banques = banques;
     }
 
-    public Set<Fournisseur> getFournisseurs() {
-        return fournisseurs;
-    }
-
-    public void setFournisseurs(Set<Fournisseur> fournisseurs) {
-        this.fournisseurs = fournisseurs;
-    }
-
-    public Set<Ordonnateur> getOrdonnateurs() {
-        return ordonnateurs;
-    }
-
-    public void setOrdonnateurs(Set<Ordonnateur> ordonnateurs) {
-        this.ordonnateurs = ordonnateurs;
-    }
 
 
     public enum Etat {
@@ -83,7 +67,21 @@ public class Caution {
         saisie
     }
 
+    public Ordonnateur getOrdonnateurs() {
+        return ordonnateurs;
+    }
 
+    public void setOrdonnateurs(Ordonnateur ordonnateurs) {
+        this.ordonnateurs = ordonnateurs;
+    }
+
+    public Fournisseur getFournisseurs() {
+        return fournisseurs;
+    }
+
+    public void setFournisseurs(Fournisseur fournisseurs) {
+        this.fournisseurs = fournisseurs;
+    }
 
     public Caution() {
     }
