@@ -1,10 +1,12 @@
 package La.Poste.Waelby.GestCaut.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import La.Poste.Waelby.GestCaut.models.Banque;
 import La.Poste.Waelby.GestCaut.models.ERole;
 import La.Poste.Waelby.GestCaut.models.Role;
 import La.Poste.Waelby.GestCaut.models.User;
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,12 +30,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 //for Angular Client (withCredentials)
@@ -55,6 +53,28 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+
+
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String nom) {
+        try {
+            List<User> users = new ArrayList<User>();
+
+            if (nom == null)
+                userRepository.findAll().forEach(users::add);
+
+
+            if (users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
