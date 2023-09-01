@@ -28,16 +28,16 @@ public class Caution {
 
     private String remarque;
 
-    private Date datesaisie;
+   // private Date datesaisie;
 
-    public Date getDatesaisie() {
+    /*public Date getDatesaisie() {
         return datesaisie;
     }
 
     public void setDatesaisie(Date datesaisie) {
         this.datesaisie = datesaisie;
     }
-
+*/
     private Etat etat;
     @DBRef
     private Ordonnateur ordonnateurs;
@@ -86,7 +86,7 @@ public class Caution {
     public Caution() {
     }
 
-    public Caution(int code, Date datecaut, String reference, float montant, Date dateleve, Date daterest, String remarque, Etat etat,Date datesaisie) {
+    public Caution(int code, Date datecaut, String reference, float montant, Date dateleve, Date daterest, String remarque, Etat etat/*,Date datesaisie*/) {
         this.code = code;
         this.datecaut = datecaut;
         this.reference = reference;
@@ -95,10 +95,10 @@ public class Caution {
         this.daterest = daterest;
         this.remarque = remarque;
         this.etat = etat;
-        this.datesaisie=datesaisie;
+        //this.datesaisie=datesaisie;
     }
 
-    public Caution(String id, int code, Date datecaut, String reference, float montant, Date dateleve, Date daterest, String remarque, Etat etat,Date datesaisie) {
+    public Caution(String id, int code, Date datecaut, String reference, float montant, Date dateleve, Date daterest, String remarque, Etat etat/*,Date datesaisie*/) {
         this.id = id;
         this.code = code;
         this.datecaut = datecaut;
@@ -108,7 +108,7 @@ public class Caution {
         this.daterest = daterest;
         this.remarque = remarque;
         this.etat = etat;
-        this.datesaisie=datesaisie;
+        //this.datesaisie=datesaisie;
     }
 
     public String getId() {

@@ -79,7 +79,7 @@ public class CautionController {
             _caution.setMontant(caution.getMontant());
             _caution.setDateleve(caution.getDateleve());
             _caution.setDaterest(caution.getDaterest());
-            _caution.setDatesaisie(caution.getDatesaisie());
+           // _caution.setDatesaisie(caution.getDatesaisie());
             _caution.setRemarque(caution.getRemarque());
             _caution.setEtat(caution.getEtat());
             _caution.setOrdonnateurs(caution.getOrdonnateurs());
