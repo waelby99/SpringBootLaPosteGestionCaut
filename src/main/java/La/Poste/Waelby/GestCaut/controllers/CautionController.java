@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import La.Poste.Waelby.GestCaut.models.Caution;
-import La.Poste.Waelby.GestCaut.models.Fournisseur;
 import La.Poste.Waelby.GestCaut.repository.CautionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

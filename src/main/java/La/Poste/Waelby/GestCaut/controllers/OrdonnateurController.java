@@ -62,7 +62,7 @@ public class OrdonnateurController {
     @PostMapping("/ordonnateurs")
     public ResponseEntity<Ordonnateur> createOrdonnateur(@RequestBody Ordonnateur ordonnateur) {
         try {
-            Ordonnateur _ordonnateur = ordonnateurRepository.save(new Ordonnateur(ordonnateur.getNom(), ordonnateur.getMail(), ordonnateur.getAdresse(), ordonnateur.getTel()));
+            Ordonnateur _ordonnateur = ordonnateurRepository.save(new Ordonnateur(ordonnateur.getRef(),  ordonnateur.getNom()));
 
             return new ResponseEntity<>(_ordonnateur, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -76,10 +76,8 @@ public class OrdonnateurController {
 
         if (ordonnateurData.isPresent()) {
             Ordonnateur _ordonnateur = ordonnateurData.get();
+            _ordonnateur.setRef(ordonnateur.getRef());
             _ordonnateur.setNom(ordonnateur.getNom());
-            _ordonnateur.setMail(ordonnateur.getMail());
-            _ordonnateur.setAdresse(ordonnateur.getAdresse());
-            _ordonnateur.setTel(ordonnateur.getTel());
             return new ResponseEntity<>(ordonnateurRepository.save(_ordonnateur), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -96,10 +94,10 @@ public class OrdonnateurController {
         }
     }
 
-    @GetMapping("/ordonnateurstel/{tel}")
-    public ResponseEntity<List<Ordonnateur>> findByTelOrdonnateur(@PathVariable("tel") int tel) {
+    @GetMapping("/ordonnateursref/{ref}")
+    public ResponseEntity<List<Ordonnateur>> findByRefOrdonnateur(@PathVariable("ref") String ref) {
         try {
-            List<Ordonnateur> ordonnateurs = ordonnateurRepository.findByTel(tel);
+            List<Ordonnateur> ordonnateurs = ordonnateurRepository.findByRef(ref);
 
             if (ordonnateurs.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

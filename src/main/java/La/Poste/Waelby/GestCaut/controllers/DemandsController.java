@@ -1,11 +1,22 @@
 package La.Poste.Waelby.GestCaut.controllers;
 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import La.Poste.Waelby.GestCaut.models.Demande;
 import La.Poste.Waelby.GestCaut.repository.DemandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +25,15 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api")
-public class DemandeController {
+public class DemandsController {
+
     @Autowired
     DemandeRepository demandeRepository;
 
     @GetMapping("/demandes")
     public ResponseEntity<List<Demande>> getAllDemandes(@RequestParam(required = false) String nom) {
         try {
-            List<Demande> demandes = new ArrayList<Demande>();
+            List<Demande> demandes = new ArrayList<>();
 
             if (nom == null)
                 demandeRepository.findAll().forEach(demandes::add);
@@ -50,18 +62,7 @@ public class DemandeController {
     @PostMapping("/demandes")
     public ResponseEntity<Demande> createDemande(@RequestBody Demande demande) {
         try {
-            Demande _demande = demandeRepository.save(new Demande(
-                    demande.getUsername(),
-                    demande.getNom(),
-                    demande.getPosition(),
-                    demande.getPrenom(),
-                    demande.getEmail(),
-                    demande.getPassword(),
-                    demande.getDemandecreatedat(),
-                    demande.getEtat(),
-                    demande.getArchived()
-            ));
-
+            Demande _demande = demandeRepository.save(demande);
             return new ResponseEntity<>(_demande, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -9,69 +9,53 @@ public class Ordonnateur {
     @Id
     private String id;
 
+    private String ref;
+
     private String nom;
 
-    private String mail;
-
-    private String adresse;
-
-    private int tel;
-
-    public Ordonnateur() {
-    }
-
-    public Ordonnateur(String id, String nom, String mail, String adresse, int tel) {
-        this.id = id;
-        this.nom = nom;
-        this.mail = mail;
-        this.adresse = adresse;
-        this.tel = tel;
-    }
-
-    public Ordonnateur(String nom, String mail, String adresse, int tel) {
-        this.nom = nom;
-        this.mail = mail;
-        this.adresse = adresse;
-        this.tel = tel;
-    }
-
+    // Getter for id
     public String getId() {
         return id;
     }
 
+    // Setter for id
     public void setId(String id) {
         this.id = id;
     }
 
+    // Getter for ref
+    public String getRef() {
+        return ref;
+    }
+
+    // Setter for ref
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    // Getter for nom
     public String getNom() {
         return nom;
     }
 
+    // Setter for nom
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    public String getMail() {
-        return mail;
+    public Ordonnateur() {
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public Ordonnateur(String id, String ref, String nom) {
+        this.id = id;
+        this.ref = ref;
+        this.nom = nom;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public int getTel() {
-        return tel;
-    }
-
-    public void setTel(int tel) {
-        this.tel = tel;
+    public Ordonnateur(String ref, String nom) {
+        this.ref = ref;
+        this.nom = nom;
     }
 }
+
+
+

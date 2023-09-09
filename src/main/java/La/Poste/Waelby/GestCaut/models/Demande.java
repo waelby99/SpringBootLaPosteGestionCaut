@@ -110,7 +110,10 @@ public class Demande {
         this.archived = archived;
     }
 
-    public Demande(String id, String username, String nom, String position, String prenom, String email, String password, Date demandecreatedat, Boolean etat,Boolean archived) {
+    public Demande() {
+    }
+
+    public Demande(String id, String username, String nom, String position, String prenom, String email, String password, Date demandecreatedat, Boolean etat/*,Boolean archived*/) {
         this.id = id;
         this.username = username;
         this.nom = nom;
@@ -120,7 +123,7 @@ public class Demande {
         this.password = password;
         this.demandecreatedat = demandecreatedat;
         this.etat = etat;
-        this.archived = archived;
+        //this.archived = archived;
     }
 
     public Demande(String username, String nom, String position, String prenom, String email, String password, Date demandecreatedat, Boolean etat,Boolean archived) {
