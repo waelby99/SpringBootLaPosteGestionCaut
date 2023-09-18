@@ -61,10 +61,10 @@ public class Caution {
 
 
     public enum Etat {
-        encours,
-        leve,
-        restitution,
-        saisie
+        En_cours,
+        Main_Leve,
+        Restitué,
+        Non_Restitué
     }
 
     public Ordonnateur getOrdonnateurs() {
